@@ -13,7 +13,7 @@ public class Television implements Comparable<Television>{
 
     public Television(final String model, final boolean smart, final int screenSize, final int resolution, final String make) {
         if(model == null || model.isEmpty() || make == null || make.isEmpty() || screenSize < 32 || resolution < 720) {
-            throw new IllegalArgumentException("Bad parameter Television constructor");
+            throw new IllegalArgumentException("Invalid parameter in constructor");
         }
         this.model = model;
         this.smart = smart;
@@ -28,6 +28,9 @@ public class Television implements Comparable<Television>{
     }
 
     public Television(final String make, final String model, final boolean smart, final int screenSize, final int resolution) {
+        if(model == null || model.isEmpty() || make == null || make.isEmpty() || screenSize < 32 || resolution < 720) {
+            throw new IllegalArgumentException("Invalid parameter in constructor");
+        }
         this.make = make;
         this.model = model;
         this.smart = smart;
@@ -60,18 +63,18 @@ public class Television implements Comparable<Television>{
     public String toString() {
         if(fourK == true) {
             if(smart == true) {
-                return this.make + "-" + this.model + ", " + this.screenSize + " inch smart tv with 4k resolution";
+                return this.make + "-" + this.model + ", " + this.screenSize + " inch smart tv with 4K resolution";
             }
             else {
-                return this.make + "-" + this.model + ", " + this.screenSize + " inch tv with 4k resolution";
+                return this.make + "-" + this.model + ", " + this.screenSize + " inch tv with 4K resolution";
             }
         }
         else {
             if(smart == true) {
-                return this.make + "-" + this.model + ", " + this.screenSize + " inch smart tv with " + this.resolution;
+                return this.make + "-" + this.model + ", " + this.screenSize + " inch smart tv with " + this.resolution + " resolution";
             }
             else {
-                return this.make + "-" + this.model + ", " + this.screenSize + " inch tv with " + this.resolution;
+                return this.make + "-" + this.model + ", " + this.screenSize + " inch tv with " + this.resolution + " resolution";
             }
         }
     }
@@ -97,7 +100,7 @@ public class Television implements Comparable<Television>{
     @Override
     public int compareTo(Television another) {
         if(another == null) {
-            throw new IllegalArgumentException("Null argument compareTo method");
+            throw new IllegalArgumentException("null parameter in the compareTo method");
         }
         if(this.make.compareTo(another.make) == 0) {
             if(this.model.compareTo(another.model) == 0) {
