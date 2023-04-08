@@ -1,5 +1,7 @@
 package cscd212classes.lab2;
 
+import java.util.Objects;
+
 public class Television implements Comparable<Television>{
 
     private final boolean fourK;
@@ -56,12 +58,53 @@ public class Television implements Comparable<Television>{
 
     @Override
     public String toString() {
-        return make + " " + model;
+        if(fourK == true) {
+            if(smart == true) {
+                return this.make + "-" + this.model + ", " + this.screenSize + " inch smart tv with 4k resolution";
+            }
+            else {
+                return this.make + "-" + this.model + ", " + this.screenSize + " inch tv with 4k resolution";
+            }
+        }
+        else {
+            if(smart == true) {
+                return this.make + "-" + this.model + ", " + this.screenSize + " inch smart tv with " + this.resolution;
+            }
+            else {
+                return this.make + "-" + this.model + ", " + this.screenSize + " inch tv with " + this.resolution;
+            }
+        }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) {
+            return true;
+        }
+        if(o == null || !(o instanceof Television that)) {
+            return false;
+        }
+        return this.fourK == that.fourK && this.smart == that.smart && this.resolution == that.resolution && this.screenSize == that.screenSize
+                && Objects.equals(this.make, that.make) && Objects.equals(this.model, that.model);
+    }
 
     @Override
-    public int compareTo(Television o) {
-        return 0;
+    public int hashCode() {
+        return this.make.hashCode() + this.model.hashCode() + resolution + Boolean.hashCode(this.smart) + Boolean.hashCode(this.fourK);
+    }
+
+    //Write
+    @Override
+    public int compareTo(Television another) {
+        if(another == null) {
+            throw new IllegalArgumentException("Null argument compareTo method");
+        }
+        if(this.make.compareTo(another.make) == 0) {
+            if(this.model.compareTo(another.model) == 0) {
+                return this.screenSize - another.screenSize;
+            }
+            return this.model.compareTo(another.model);
+        }
+        return this.make.compareTo(another.make);
     }
 }
