@@ -13,7 +13,7 @@ public class Television implements Comparable<Television>{
 
     public Television(final String model, final boolean smart, final int screenSize, final int resolution, final String make) {
         if(model == null || model.isEmpty() || make == null || make.isEmpty() || screenSize < 32 || resolution < 720) {
-            throw new IllegalArgumentException("Bad paramater Television constructor");
+            throw new IllegalArgumentException("Bad parameter Television constructor");
         }
         this.model = model;
         this.smart = smart;

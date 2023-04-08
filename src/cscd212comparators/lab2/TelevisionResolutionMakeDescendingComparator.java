@@ -1,4 +1,15 @@
 package cscd212comparators.lab2;
 
-public class TelevisionResolutionMakeDescendingComparator {
+import cscd212classes.lab2.Television;
+
+import java.util.Comparator;
+
+public class TelevisionResolutionMakeDescendingComparator implements Comparator<Television> {
+    @Override
+    public int compare(Television t1, Television t2) {
+        if(t2.getResolution() - t1.getResolution() == 0) {
+            return t2.getMake().compareTo(t1.getMake());
+        }
+        return t2.getResolution() - t1.getResolution();
+    }
 }
